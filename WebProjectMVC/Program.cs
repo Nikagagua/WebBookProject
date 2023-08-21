@@ -1,15 +1,23 @@
+using Microsoft.EntityFrameworkCore;
+using WebProjectMVC.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+
+
 builder.Services.AddControllersWithViews();
+
+var conn = builder.Configuration.GetConnectionString("WebProject");
+builder.Services.AddDbContext<WebProjectDbContext>(options => options.UseSqlServer(conn));
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
 app.UseStaticFiles();
 
 app.UseRouting();

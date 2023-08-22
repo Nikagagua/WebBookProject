@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WebProjectMVC.Data;
-using WebProjectMVC.Models;
+using WebProject.DataAccess.Data;
+using WebProject.Models.Models;
 
 namespace WebProjectMVC.Controllers
 {
@@ -54,7 +54,17 @@ namespace WebProjectMVC.Controllers
                 {
                     _context?.Categories?.Add(category);
                     _context?.SaveChanges();
-                    TempData["Success"] = "Category created successfully";
+
+                    // Notifications 
+                    if (TempData["Success"] == null)
+                    {
+                        TempData["Success"] = "Category deleted successfully";
+                    }
+                    else if (TempData["Error"] == null)
+                    {
+                        TempData["Error"] = "There was an error deleting the category";
+                    }
+                    
                     return RedirectToAction("Index", "Category");
                 }
             }
@@ -95,7 +105,16 @@ namespace WebProjectMVC.Controllers
                 {
                     _context?.Categories?.Update(category);
                     _context?.SaveChanges();
-                    TempData["Success"] = "Category updated successfully";
+
+                    // Notifications 
+                    if (TempData["Success"] == null)
+                    {
+                        TempData["Success"] = "Category updated successfully";
+                    }
+                    else if (TempData["Error"] == null)
+                    {
+                        TempData["Error"] = "There was an error updating the category";
+                    }
                     return RedirectToAction("Index", "Category");
                 }
             }
@@ -128,7 +147,17 @@ namespace WebProjectMVC.Controllers
             }
             _context?.Categories?.Remove(category);
             _context?.SaveChanges();
-            TempData["Success"] = "Category deleted successfully";
+
+            // Notifications 
+            if (TempData["Success"] == null)
+            {
+                TempData["Success"] = "Category deleted successfully";
+            }
+            else if (TempData["Error"] == null)
+            {
+                TempData["Error"] = "There was an error deleting the category";
+            }
+
             return RedirectToAction("Index", "Category");
         }
     }

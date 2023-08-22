@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Security.Permissions;
 
-namespace WebProjectMVC.Models
+namespace WebProject.Models.Models
 {
     public class CategoryModel
     {

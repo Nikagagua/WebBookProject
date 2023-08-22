@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebProjectMVC.Data;
+using WebProject.DataAccess.Data;
 
 #nullable disable
 
-namespace WebProjectMVC.Migrations
+namespace WebProject.DataAccess.Migrations
 {
     [DbContext(typeof(WebProjectDbContext))]
-    [Migration("20230819071234_AddingValuesToCategoriesTable")]
-    partial class AddingValuesToCategoriesTable
+    [Migration("20230822060233_MainModel")]
+    partial class MainModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace WebProjectMVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebProjectMVC.Models.CategoryModel", b =>
+            modelBuilder.Entity("WebProject.Models.Models.CategoryModel", b =>
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()

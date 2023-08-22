@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebProjectMVC.Data;
+using WebProject.DataAccess.Data;
 
 #nullable disable
 
-namespace WebProjectMVC.Migrations
+namespace WebProject.DataAccess.Migrations
 {
     [DbContext(typeof(WebProjectDbContext))]
     partial class WebProjectDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace WebProjectMVC.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("WebProjectMVC.Models.CategoryModel", b =>
+            modelBuilder.Entity("WebProject.Models.Models.CategoryModel", b =>
                 {
                     b.Property<Guid>("CategoryId")
                         .ValueGeneratedOnAdd()

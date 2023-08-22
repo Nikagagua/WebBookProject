@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WebProjectMVC.Migrations
+namespace WebProject.DataAccess.Migrations
 {
     /// <inheritdoc />
     public partial class MainModel : Migration

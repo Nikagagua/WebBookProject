@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
-using WebProjectMVC.Models;
+using WebProject.Models.Models;
 
-namespace WebProjectMVC.Data
+namespace WebProject.DataAccess.Data
 {
     public class WebProjectDbContext : DbContext
     {

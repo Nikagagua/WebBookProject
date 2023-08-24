@@ -36,7 +36,7 @@
   <ItemGroup>
     <ProjectReference Include="..\WebProject.Models\WebProject.Models.csproj" />
     <ProjectReference Include="..\WebProject.Utility\WebProject.Utility.csproj" />
-    <ProjectReference Include="..\WebProjectDataAccess\WebProject.DataAccess.csproj" />
+    <ProjectReference Include="..\WebProject.DataAccess\WebProject.DataAccess.csproj" />
   </ItemGroup>
 
 </Project>

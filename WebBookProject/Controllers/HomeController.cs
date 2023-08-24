@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using WebProject.Models;
 
-namespace WebProjectMVC.Controllers
+namespace WebBookProject.Controllers
 {
     public class HomeController : Controller
     {
@@ -19,6 +19,11 @@ namespace WebProjectMVC.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult AboutMe()
         {
             return View();
         }

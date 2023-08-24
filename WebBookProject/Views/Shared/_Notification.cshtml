@@ -17,16 +17,27 @@
 
 @if (TempData["Success"] != null) 
 {
-    <div class="alert alert-dismissible alert-success text-center">
+    <div id="successAlert" class="alert alert-dismissible alert-success text-center">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong>@TempData["Success"]</strong>
     </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('successAlert').remove();
+        }, 5000);
+    </script>
 }
 @if (TempData["Error"] != null) 
 {
-    <div class="alert alert-dismissible alert-danger text-center">
+    <div id="errorAlert" class="alert alert-dismissible alert-danger text-center">
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
         <strong>@TempData["Error"]</strong>
     </div>
+    <script>
+        setTimeout(function() {
+            document.getElementById('errorAlert').remove();
+        }, 5000);
+    </script>
 }
+
 

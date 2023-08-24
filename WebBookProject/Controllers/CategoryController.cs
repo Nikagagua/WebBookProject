@@ -1,31 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebProject.DataAccess.Data;
+using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models.Models;
 
-namespace WebProjectMVC.Controllers
+namespace WebBookProject.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly WebProjectDbContext _context;
+        private readonly IUnitOfWork __unitOfWork;
 
-        public CategoryController(WebProjectDbContext context)
+        public CategoryController(IUnitOfWork context)
         {
-            _context = context;
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            _context.Dispose();
+            __unitOfWork = context;
         }
 
         public IActionResult Index()
         {
-            if (_context.Categories == null)
+            if (__unitOfWork.Category.GetAll() == null)
                 {
-                    throw new ArgumentNullException(nameof(_context.Categories));
+                    throw new ArgumentNullException(nameof(__unitOfWork.Category.GetAll));
                 }
 
-            List<CategoryModel> categories = _context.Categories.ToList();
+            List<CategoryModel> categories = __unitOfWork.Category.GetAll().ToList();
             
             return View(categories);
         }
@@ -52,13 +48,13 @@ namespace WebProjectMVC.Controllers
                 }
                 else
                 {
-                    _context?.Categories?.Add(category);
-                    _context?.SaveChanges();
+                    __unitOfWork.Category.Add(category);
+                    __unitOfWork.Save();
 
                     // Notifications 
                     if (TempData["Success"] == null)
                     {
-                        TempData["Success"] = "Category deleted successfully";
+                        TempData["Success"] = "Category created successfully";
                     }
                     else if (TempData["Error"] == null)
                     {
@@ -80,7 +76,7 @@ namespace WebProjectMVC.Controllers
                 return NotFound();
             }
 
-            CategoryModel? categoryFromDb = _context?.Categories?.FirstOrDefault(c => c.CategoryId == id);
+            CategoryModel? categoryFromDb = __unitOfWork.Category.Get(c => c.CategoryId == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -103,8 +99,8 @@ namespace WebProjectMVC.Controllers
                 }
                 else
                 {
-                    _context?.Categories?.Update(category);
-                    _context?.SaveChanges();
+                    __unitOfWork.Category.Update(category);
+                    __unitOfWork.Save();
 
                     // Notifications 
                     if (TempData["Success"] == null)
@@ -129,7 +125,7 @@ namespace WebProjectMVC.Controllers
             {
                 return NotFound();
             }
-            CategoryModel? categoryFromDb = _context?.Categories?.FirstOrDefault(c => c.CategoryId == id);
+            CategoryModel? categoryFromDb = __unitOfWork.Category.Get(c => c.CategoryId == id);
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -140,18 +136,18 @@ namespace WebProjectMVC.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(Guid? Id)
         {
-            CategoryModel? category = _context?.Categories?.FirstOrDefault(c => c.CategoryId == Id);
+            CategoryModel? category = __unitOfWork.Category.Get(c => c.CategoryId == Id);
             if (category == null)
             {
                 return NotFound();
             }
-            _context?.Categories?.Remove(category);
-            _context?.SaveChanges();
+            __unitOfWork.Category.Remove(category);
+            __unitOfWork.Save();
 
             // Notifications 
             if (TempData["Success"] == null)
             {
-                TempData["Success"] = "Category deleted successfully";
+                TempData["Success"] = "Category removed successfully";
             }
             else if (TempData["Error"] == null)
             {

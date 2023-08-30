@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using WebProject.DataAccess.Data;
 using WebProject.DataAccess.Repository.IRepository;
 
@@ -12,38 +10,46 @@ namespace WebProject.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly WebProjectDbContext _context;
+        private readonly WebProjectDbContext _db;
         internal DbSet<T> dbSet;
 
-        public Repository(WebProjectDbContext context)
+        public Repository(WebProjectDbContext db)
         {
-            _context = context;
-            this.dbSet = _context.Set<T>();
+            _db = db;
+            this.dbSet = _db.Set<T>();
         }
+
         public void Add(T entity)
         {
             dbSet.Add(entity);
         }
 
-
-        public T Get(Expression<Func<T, bool>> filter)
+        public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-            query = query.Where(filter);
-            
-            var result = query.FirstOrDefault();
-            if (result == null)
+            if (!string.IsNullOrEmpty(includeProperties))
             {
-                throw new InvalidOperationException("No matching entity found.");
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
             }
-            
-            return result;
+            var queryResult = query.FirstOrDefault(filter);
+            return queryResult;
         }
 
-
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.ToList();
         }
 

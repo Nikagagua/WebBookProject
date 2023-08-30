@@ -1,21 +1,21 @@
-using System.Linq.Expressions;
 using WebProject.DataAccess.Data;
 using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models.Models;
 
 namespace WebProject.DataAccess.Repository
 {
-    public class CategoryRepository : Repository<CategoryModel>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private readonly WebProjectDbContext _context;
-        public CategoryRepository(WebProjectDbContext context) : base(context)
+        private WebProjectDbContext _db;
+
+        public CategoryRepository(WebProjectDbContext db) : base(db)
         {
-            _context = context;
+            _db = db;
         }
 
-        public void Update(CategoryModel category)
+        public void Update(Category obj)
         {
-            _context.Update(category);
+            _db.Categories.Update(obj);
         }
     }
 }

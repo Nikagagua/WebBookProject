@@ -5,9 +5,9 @@ using WebProject.DataAccess.Repository.IRepository;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 var conn = builder.Configuration.GetConnectionString("WebProject");
 builder.Services.AddDbContext<WebProjectDbContext>(options => options.UseSqlServer(conn));
@@ -15,7 +15,6 @@ builder.Services.AddDbContext<WebProjectDbContext>(options => options.UseSqlServ
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
-
 
 if (!app.Environment.IsDevelopment())
 {
@@ -30,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=User}/{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

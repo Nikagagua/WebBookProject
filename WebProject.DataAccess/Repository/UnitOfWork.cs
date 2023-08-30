@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WebProject.DataAccess.Data;
+﻿using WebProject.DataAccess.Data;
 using WebProject.DataAccess.Repository.IRepository;
 
 namespace WebProject.DataAccess.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private WebProjectDbContext _context;
+        private WebProjectDbContext _db;
         public ICategoryRepository Category { get; private set; }
-        public UnitOfWork(WebProjectDbContext context)
+        public IProductRepository Product { get; private set; }
+
+        public UnitOfWork(WebProjectDbContext db)
         {
-            _context = context;
-            Category = new CategoryRepository(_context);
+            _db = db;
+            Category = new CategoryRepository(_db);
+            Product = new ProductRepository(_db);
         }
-        
 
         public void Save()
         {
-            _context.SaveChanges();
+            _db.SaveChanges();
         }
     }
 }

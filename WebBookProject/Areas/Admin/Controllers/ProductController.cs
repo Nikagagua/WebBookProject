@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using WebBookProject.Utility;
 using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models.Models;
 using WebProject.Models.ViewModels;
@@ -7,6 +9,7 @@ using WebProject.Models.ViewModels;
 namespace WebBookProject.Areas.Admin.Controllers
 {
      [Area("Admin")]
+     [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

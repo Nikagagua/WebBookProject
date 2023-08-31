@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using WebProject.Models;
 using WebProject.Models.Models;
 
 namespace WebProject.DataAccess.Data
 {
-    public class WebProjectDbContext : DbContext
+    public class WebProjectDbContext : IdentityDbContext
     {
         public WebProjectDbContext(DbContextOptions<WebProjectDbContext> options) : base(options)
         {
@@ -11,9 +13,12 @@ namespace WebProject.DataAccess.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
                 new Category { Id = 2, Name = "SciFi", DisplayOrder = 2 },
@@ -94,8 +99,8 @@ namespace WebProject.DataAccess.Data
                 new Product
                 {
                     Id = 7,
-                    Title = "Discovering History",
-                    Author = "Alex Historian",
+                    Title = "The Goldfinch",
+                    Author = "Donna Tartt",
                     Description = "Delve into the past and discover the fascinating stories that shaped our world.",
                     ISBN = "HIST9876543",
                     ListPrice = 55,
@@ -121,9 +126,9 @@ namespace WebProject.DataAccess.Data
                 },
                 new Product
                 {
-                    Id = 8, 
-                    Title = "Mystical Adventures",
-                    Author = "Sophie Enigma",
+                    Id = 8,
+                    Title = "The Enigma Game",
+                    Author = "ELIZABETH WEIN",
                     Description = "Embark on a journey of magic and wonder. Join our heroes as they unravel the secrets of the mystical realm.",
                     ISBN = "MYST1234567",
                     ListPrice = 45,

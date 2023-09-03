@@ -1,7 +1,12 @@
 @model Product
 
-<form method="post">
-    <div class="card shadow border-0 mt-4 mb-4">
+<form method="post" xmlns="http://www.w3.org/1999/html">
+    <input type="hidden" id="listPrice" value="@Model.ListPrice">
+    <input type="hidden" id="price" value="@Model.Price"/>
+    <input type="hidden" id="price50" value="@Model.Price50" />
+    <input type="hidden" id="price100" value="@Model.Price100" />
+
+     <div class="card shadow border-0 mt-4 mb-4">
         <div class="card-header bg-dark bg-gradient text-light py-4">
             <div class="row">
                 <div class="col-12 text-center">
@@ -66,26 +71,36 @@
                             </div>
                         </div>
                         <div class="row pl-2 my-3">
+                            <div class="text-dark text-opacity-50 fw-bold">Description</div>
                             <p class="text-dark lh-sm">@Html.Raw(Model.Description)</p>
                         </div>
                         <div class="row pl-2 mb-3">
                             <div class="col-md-4">
                                 <div class="input-group mb-3">
-                                    <span class="input-group-text bg-dark text-white border-0 fw-semibold" 
-                                    id="inputGroup-sizing-default">
-                                        Count
-                                    </span>
-                                    <input type="number" value="1" class="form-control text-end"
-                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default"/>
+                                    <span class="input-group-text bg-dark text-white border-0 fw-semibold" id="inputGroup-sizing-default">Count</span>
+                                    <input type="number" id="countInput" value="0" class="form-control text-end"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" min="0">
+                                </div>
+                            </div>
+                            <!-- Add a new button for calculating and displaying the cost -->
+                            <div class="col-md-4">
+                                <button type="button" id="calculateCostBtn" class="btn btn-outline-dark bg-gradient w-100 py-2 text-uppercase fw-semibold">
+                                    Calculate Cost
+                                </button>
+                            </div>
+                            <!-- Add a div to display the cost -->
+                            <div class="col-md-3">
+                                <div class="input-group mb-3">
+                                    <div id="costDisplay" class="form-control text-end">@string.Format("{0:C}", 0)</div>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-12 col-md-6 pb-1">
-                                <button type="submit" disabled 
+                                <button type="submit" id="addToCartBtn" disabled 
                                     class="btn btn-dark bg-gradient  w-100 py-2 text-uppercase fw-semibold"
                                 >
-                                Add to Cart (Comming Soon...)
+                                Add to Cart (Coming Soon...)
                             </button>
                             </div>
                         </div>
@@ -96,3 +111,36 @@
         </div>
     </div>
 </form>
+
+
+<script>
+// Get the new button for calculating and displaying the cost
+const calculateCostBtn = document.getElementById("calculateCostBtn");
+
+// Get the cost display element
+const costDisplay = document.getElementById("costDisplay");
+
+// Get the prices from hidden input fields
+const price = parseFloat(document.getElementById("price").value);
+const price50 = parseFloat(document.getElementById("price50").value);
+const price100 = parseFloat(document.getElementById("price100").value);
+
+// Add an event listener to the "Calculate Cost" button
+calculateCostBtn.addEventListener("click", function () {
+    let count = parseInt(countInput.value);
+
+    // Calculate the total cost based on the count
+    let totalCost = 0;
+    if (count <= 50) {
+        totalCost = count * price;
+    } else if (count <= 100) {
+        totalCost = count * price50;
+    } else {
+        totalCost = count * price100;
+    }
+
+    // Display the total cost
+    costDisplay.textContent = totalCost.toLocaleString("en-US", { style: "currency", currency: "USD" });
+});
+</script>
+

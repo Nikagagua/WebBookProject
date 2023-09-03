@@ -1,5 +1,5 @@
 .divider-text:before,
-.divider-text:after{
+.divider-text:after {
     color: white;
     content: "";
     flex: 1;
@@ -7,7 +7,6 @@
     margin: auto 0.25rem;
     box-shadow: 0 -2px;
 }
-
 
 html {
     font-size: 14px;

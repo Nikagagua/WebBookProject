@@ -12,8 +12,8 @@ using WebProject.DataAccess.Data;
 namespace WebProject.DataAccess.Migrations
 {
     [DbContext(typeof(WebProjectDbContext))]
-    [Migration("20230831112004_ExtendIdentityUser")]
-    partial class ExtendIdentityUser
+    [Migration("20230903081509_MainModel")]
+    partial class MainModel
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -178,12 +178,10 @@ namespace WebProject.DataAccess.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -220,12 +218,10 @@ namespace WebProject.DataAccess.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("nvarchar(128)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -331,114 +327,114 @@ namespace WebProject.DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Author = "Billy Spark",
-                            CategoryId = 1,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "SWD9999001",
+                            Author = "J. K. Rowling",
+                            CategoryId = 2,
+                            Description = "Harry Potter has never been the star of a Quidditch team, scoring points while riding a broom far above the ground. He knows no spells, has never helped to hatch a dragon, and has never worn a cloak of invisibility.All he knows is a miserable life with the Dursleys, his horrible aunt and uncle, and their abominable son, Dudley - a great big swollen spoiled bully. Harry's room is a tiny closet at the foot of the stairs, and he hasn't had a birthday party in eleven years.But all that is about to change when a mysterious letter arrives by owl messenger: a letter with an invitation to an incredible place that Harry - and anyone who reads about him - will find unforgettable.For it's there that he finds not only friends, aerial sports, and magic in everything from classes to meals, but a great destiny that's been waiting for him... if Harry can survive the encounter.",
+                            ISBN = "9780590353427",
                             ImageUrl = "",
-                            ListPrice = 99.0,
-                            Price = 90.0,
-                            Price100 = 80.0,
-                            Price50 = 85.0,
-                            Title = "Fortune of Time"
+                            ListPrice = 10.99,
+                            Price = 10.220000000000001,
+                            Price100 = 9.6899999999999995,
+                            Price50 = 10.09,
+                            Title = "Harry Potter and the Sorcerer's Stone"
                         },
                         new
                         {
                             Id = 2,
-                            Author = "Nancy Hoover",
+                            Author = "Suzanne Collins",
                             CategoryId = 1,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "CAW777777701",
+                            Description = "The first novel in the worldwide bestselling series by Suzanne Collin! Winning means fame and fortune. Losing means certain death. The Hunger Games have begun. . . . In the ruins of a place once known as North America lies the nation of Panem, a shining Capitol surrounded by twelve outlying districts. The Capitol is harsh and cruel and keeps the districts in line by forcing them all to send one boy and one girl between the ages of twelve and eighteen to participate in the annual Hunger Games, a fight to the death on live TV. Sixteen-year-old Katniss Everdeen regards it as a death sentence when she steps forward to take her sister's place in the Games. But Katniss has been close to dead before-and survival, for her, is second nature. Without really meaning to, she becomes a contender. But if she is to win, she will have to start making choices that weigh survival against humanity and life against love.",
+                            ISBN = "9780439023528",
                             ImageUrl = "",
-                            ListPrice = 40.0,
-                            Price = 30.0,
-                            Price100 = 20.0,
-                            Price50 = 25.0,
-                            Title = "Dark Skies"
+                            ListPrice = 14.99,
+                            Price = 13.94,
+                            Price100 = 13.09,
+                            Price50 = 13.49,
+                            Title = "The Hunger Games"
                         },
                         new
                         {
                             Id = 3,
-                            Author = "Julian Button",
+                            Author = "Stephenie Meyer",
                             CategoryId = 1,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "RITO5555501",
+                            Description = "Fall in love with the addictive, suspenseful love story between a teenage girl and a vampire with the book that sparked a 'literary phenomenon' and redefined romance for a generation (New York Times). Isabella Swan's move to Forks, a small, perpetually rainy town in Washington, could have been the most boring move she ever made. But once she meets the mysterious and alluring Edward Cullen, Isabella's life takes a thrilling and terrifying turn. Up until now, Edward has managed to keep his vampire identity a secret in the small community he lives in, but now nobody is safe, especially Isabella, the person Edward holds most dear. The lovers find themselves balanced precariously on the point of a knife -- between desire and danger. Deeply romantic and extraordinarily suspenseful, Twilight captures the struggle between defying our instincts and satisfying our desires. This is a love story with bite. It's here! #1 bestselling author Stephenie Meyer makes a triumphant return to the world of Twilight with the highly anticipated companion, Midnight Sun: the iconic love story of Bella and Edward told from the vampire's point of view.",
+                            ISBN = "9780316160179",
                             ImageUrl = "",
-                            ListPrice = 55.0,
-                            Price = 50.0,
-                            Price100 = 35.0,
-                            Price50 = 40.0,
-                            Title = "Vanish in the Sunset"
+                            ListPrice = 24.989999999999998,
+                            Price = 23.239999999999998,
+                            Price100 = 22.489999999999998,
+                            Price50 = 22.890000000000001,
+                            Title = "Twilight"
                         },
                         new
                         {
                             Id = 4,
-                            Author = "Abby Muscles",
+                            Author = "Harper Lee",
                             CategoryId = 2,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "WS3333333301",
+                            Description = "Voted America's Best-Loved Novel in PBS's The Great American Read Harper Lee's Pulitzer Prize-winning masterwork of honor and injustice in the deep South--and the heroism of one man in the face of blind and violent hatred One of the most cherished stories of all time, To Kill a Mockingbird has been translated into more than forty languages, sold more than forty million copies worldwide, served as the basis for an enormously popular motion picture, and was voted one of the best novels of the twentieth century by librarians across the country. A gripping, heart-wrenching, and wholly remarkable tale of coming-of-age in a South poisoned by virulent prejudice, it views a world of great beauty and savage inequities through the eyes of a young girl, as her father--a crusading local lawyer--risks everything to defend a black man unjustly accused of a terrible crime.",
+                            ISBN = "9780060935467",
                             ImageUrl = "",
-                            ListPrice = 70.0,
-                            Price = 65.0,
-                            Price100 = 55.0,
-                            Price50 = 60.0,
-                            Title = "Cotton Candy"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Author = "Ron Parker",
-                            CategoryId = 2,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "SOTJ1111111101",
-                            ImageUrl = "",
-                            ListPrice = 30.0,
-                            Price = 27.0,
-                            Price100 = 20.0,
-                            Price50 = 25.0,
-                            Title = "Rock in the Ocean"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Author = "Donna Tartt",
-                            CategoryId = 3,
-                            Description = "Delve into the past and discover the fascinating stories that shaped our world.",
-                            ISBN = "HIST9876543",
-                            ImageUrl = "",
-                            ListPrice = 55.0,
-                            Price = 50.0,
-                            Price100 = 40.0,
-                            Price50 = 45.0,
-                            Title = "The Goldfinch"
+                            ListPrice = 16.989999999999998,
+                            Price = 15.800000000000001,
+                            Price100 = 15.1,
+                            Price50 = 15.49,
+                            Title = "To Kill a Mockingbird"
                         },
                         new
                         {
                             Id = 6,
-                            Author = "Laura Phantom",
-                            CategoryId = 3,
-                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
-                            ISBN = "FOT000000001",
+                            Author = "John Green",
+                            CategoryId = 2,
+                            Description = "The beloved, #1 global bestseller by John Green, author of The Anthropocene Reviewed and Turtles All the Way Down 'John Green is one of the best writers alive.' -E. Lockhart, #1 bestselling author of We Were Liars 'The greatest romance story of this decade.' -Entertainment Weekly #1 New York Times Bestseller - #1 Wall Street Journal Bestseller - #1 USA Today Bestseller - #1 International Bestseller Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten. From John Green, #1 bestselling author of The Anthropocene Reviewed and Turtles All the Way Down, The Fault in Our Stars is insightful, bold, irreverent, and raw. It brilliantly explores the funny, thrilling, and tragic business of being alive and in love.",
+                            ISBN = "9780142424179",
                             ImageUrl = "",
-                            ListPrice = 25.0,
-                            Price = 23.0,
-                            Price100 = 20.0,
-                            Price50 = 22.0,
-                            Title = "Leaves and Wonders"
+                            ListPrice = 14.99,
+                            Price = 13.94,
+                            Price100 = 12.300000000000001,
+                            Price50 = 12.99,
+                            Title = "The Fault in Our Stars"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "F. Scott Fitzgerald",
+                            CategoryId = 3,
+                            Description = "The only authorized edition of the twentieth-century classic, featuring F. Scott Fitzgerald's final revisions, a foreword by his granddaughter, and a new introduction by National Book Award winner Jesmyn Ward. Nominated as one of America's best-loved novels by PBS's The Great American Read. The Great Gatsby, F. Scott Fitzgerald's third book, stands as the supreme achievement of his career. First published in 1925, this quintessential novel of the Jazz Age has been acclaimed by generations of readers. The story of the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, of lavish parties on Long Island at a time when The New York Times noted 'gin was the national drink and sex the national obsession,' it is an exquisitely crafted tale of America in the 1920s.",
+                            ISBN = "9780743273565",
+                            ImageUrl = "",
+                            ListPrice = 17.0,
+                            Price = 15.81,
+                            Price100 = 14.09,
+                            Price50 = 14.890000000000001,
+                            Title = "The Great Gatsby"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Author = "George Orwell",
+                            CategoryId = 3,
+                            Description = "The beloved, #1 global bestseller by John Green, author of The Anthropocene Reviewed and Turtles All the Way Down 'John Green is one of the best writers alive.' -E. Lockhart, #1 bestselling author of We Were Liars 'The greatest romance story of this decade.' -Entertainment Weekly #1 New York Times Bestseller - #1 Wall reet Journal Bestseller - #1 USA Today Bestseller - #1 International Bestseller Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten. From John Green, #1 bestselling author of The Anthropocene Reviewed and Turtles All the Way Down, The Fault in Our Stars is insightful, bold, irreverent, and raw. It brilliantly explores the funny, thrilling, and tragic business of being alive and in love.",
+                            ISBN = "9780451524935",
+                            ImageUrl = "",
+                            ListPrice = 9.9900000000000002,
+                            Price = 9.2899999999999991,
+                            Price100 = 8.0899999999999999,
+                            Price50 = 8.7899999999999991,
+                            Title = "1984"
                         },
                         new
                         {
                             Id = 8,
-                            Author = "ELIZABETH WEIN",
-                            CategoryId = 2,
-                            Description = "Embark on a journey of magic and wonder. Join our heroes as they unravel the secrets of the mystical realm.",
-                            ISBN = "MYST1234567",
+                            Author = "Jane Austen",
+                            CategoryId = 3,
+                            Description = "Austen's most popular novel, the unforgettable story of Elizabeth Bennet and Mr. Darcy Few have failed to be charmed by the witty and independent spirit of Elizabeth Bennet in Austen's beloved classic Pride and Prejudice. When Elizabeth Bennet first meets eligible bachelor Fitzwilliam Darcy, she thinks him arrogant and conceited; he is indifferent to her good looks and lively mind. When she later discovers that Darcy has involved himself in the troubled relationship between his friend Bingley and her beloved sister Jane, she is determined to dislike him more than ever. In the sparkling comedy of manners that follows, Jane Austen shows us the folly of judging by first impressions and superbly evokes the friendships, gossip and snobberies of provincial middle-class life. This Penguin Classics edition, based on Austen's first edition, contains the original Penguin Classics introduction by Tony Tanner and an updated introduction and notes by Viven Jones. For more than seventy years, Penguin has been the leading publisher of classic literature in the English-speaking world. With more than 1,700 titles, Penguin Classics represents a global bookshelf of the best works throughout history and across genres and disciplines. Readers trust the series to provide authoritative texts enhanced by introductions and notes by distinguished scholars and contemporary authors, as well as up-to-date translations by award-winning translators.",
+                            ISBN = "9780141439518",
                             ImageUrl = "",
-                            ListPrice = 45.0,
-                            Price = 40.0,
-                            Price100 = 30.0,
-                            Price50 = 35.0,
-                            Title = "The Enigma Game"
+                            ListPrice = 9.0,
+                            Price = 8.3699999999999992,
+                            Price100 = 7.5,
+                            Price50 = 7.9900000000000002,
+                            Title = "Pride and Prejudice"
                         });
                 });
 

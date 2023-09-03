@@ -1,20 +1,47 @@
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
+using WebBookProject.Utility;
 using WebProject.DataAccess.Data;
 using WebProject.DataAccess.Repository;
 using WebProject.DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using WebBookProject.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
+var Configuration = builder.Configuration;
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+}).AddCookie()
+  .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
+{
+    options.ClientId = Configuration["Authentication:Google:ClientId"];
+    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+    options.CallbackPath = "/signin-google";
+    options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
+});
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy",
+        builder => builder
+            .WithOrigins("http://localhost:5000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            .AllowCredentials());
+});
 
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-var conn = builder.Configuration.GetConnectionString("WebProject");
+var conn = builder.Configuration.GetConnectionString("WebBookProject");
 builder.Services.AddDbContext<WebProjectDbContext>(options => options.UseSqlServer(conn));
-
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<WebProjectDbContext>().AddDefaultTokenProviders();
 builder.Services.AddRazorPages();
@@ -28,13 +55,14 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 });
 
-
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+
+app.UseCors("CorsPolicy");
 
 app.UseStaticFiles();
 

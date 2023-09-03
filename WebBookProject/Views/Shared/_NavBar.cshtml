@@ -6,6 +6,9 @@
     </button>
     <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
         <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" asp-area="User" asp-controller="Home" asp-action="AboutMe">About Me</a>
+            </li>
             @if (User.IsInRole(SD.Role_Admin))
             {
             <li class="nav-item dropdown">

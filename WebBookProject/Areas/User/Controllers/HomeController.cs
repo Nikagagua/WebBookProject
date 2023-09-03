@@ -30,6 +30,17 @@ namespace WebBookProject.Areas.User.Controllers
             return View(product);
         }
 
+        // public IActionResult Details(int productId)
+        // {
+        //     ShoppingCart cart = new()
+        //     {
+        //         Product = _unitOfWork.Product.Get(u => u.Id == productId, includeProperties: "Category"),
+        //         Count = 1,
+        //         ProductId = productId
+        //     };
+        //     return View(cart);
+        // }
+
         public IActionResult Privacy()
         {
             return View();

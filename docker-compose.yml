@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  webbookproject:
+    container_name: webbookproject-container
+    image: ${DOCKER_REGISTRY-}webbookproject
+    build:
+      context: .
+      dockerfile: WebBookProject/Dockerfile
+    ports:
+      - "5400:80"
+      - "5401:443"
+    depends_on:
+      - sqlserver
+    environment:
+      - DB_Host=sqlserver
+      - DB_User=sa
+      - DB_Password=Str0ngP@ssw0rd
+      - DB_Name=WebBookProjectDb
+
+  sqlserver:
+    container_name: sqlserver-container
+    restart: unless-stopped
+    image: "mcr.microsoft.com/mssql/server:2019-latest"
+    environment:
+      - SA_PASSWORD=Str0ngP@ssw0rd
+      - ACCEPT_EULA=Y
+    volumes:
+      - "./data-mssql:/var/opt/mssql/data"
+    ports:
+      - "8080:1433"
+

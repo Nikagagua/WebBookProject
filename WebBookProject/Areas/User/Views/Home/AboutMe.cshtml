@@ -1,43 +1,37 @@
-﻿
-@{
-    ViewData["Title"] = "About Me";
-}
+﻿<!DOCTYPE HTML>
 
-<section class="py-3 py-md-5">
-  <div class="container mb-4 mb-md-5">
-    <div class="row justify-content-md-center">
-      <div class="col-12 col-md-10 col-xxl-8 text-center">
-        <img class="img-fluid rounded shadow" loading="lazy" src="~/images/IMG_0040.jpg" alt="" style="max-height: 300px;">
-        <h2 class="display-4 fw-bold mt-3">Nika Gagua</h2>
-        <p class="text-secondary fs-5 mb-2">Software Developer</p>
-        <div class="d-grid">
-          <a href="https://linkedin.com/in/n1kagagua?trk=profile-badge" class="btn btn-dark btn-lg mt-2" target="_blank" rel="noopener noreferrer">Contact Me</a>
-        </div>
-        @* <div class="badge-base LI-profile-badge mt-3" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="n1kagagua" data-version="v1">
-          <a class="badge-base__link LI-simple-link" href="https://ge.linkedin.com/in/n1kagagua?trk=profile-badge"></a>
-        </div> *@
-      </div>
-    </div>
-  </div>
+<html>
+	<head>
+		<title>Nika Gagua</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="~/css/main.css" />
+		<link rel="stylesheet" href="~/css/ie9.css" />
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	</head>
+	<body class="is-loading">
+			<div id="wrapper">
+					<section id="main">
+						<header>
+							<span class="avatar"><img src="~/images/IMG_0040.jpg" alt="Nika's picture" width="300"/></span>
+							<h1>Nika Gagua</h1>
+						</header>
+						<footer>
+							<ul class="icons">
+								<li><a href="https://www.linkedin.com/in/N1kagagua/" class="fa-linkedin">LinkedIn</a></li>
+								<li><a href="https://github.com/Nikagagua" class="fa-github">Github</a></li>
+								<li><a href="https://twitter.com/Nicknet1c" class="fa-twitter">Twitter</a></li>
+							</ul>
+						</footer>
+					</section>
 
-  <div class="container">
-    <div class="row gy-4 justify-content-center">
-      <div class="col-md-8 text-center">
-        <p class="lead">
-          I'm <strong>Nika Gagua</strong>, an aspiring software developer driven by a passion for learning and problem-solving.
-        </p>
-        <p>
-          Currently exploring the extensive possibilities of Python and C#, I leverage my diverse background to approach challenges from a unique perspective.
-        </p>
-        <p>
-          My spare time is dedicated to mastering new technologies, and I find joy in delving into the tech world's depths to solve problems and bring ideas to life through code.
-        </p>
-        <p>
-          Let's connect and collaborate to navigate the exciting intersections of Python, C#, and beyond!
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+			</div>
+			<script>
+				if ('addEventListener' in window) {
+					window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+					document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+				}
+			</script>
 
-</section>
+	</body>
+</html>

@@ -8,9 +8,18 @@ using WebBookProject.Utility;
 using WebProject.DataAccess.Data;
 using WebProject.DataAccess.Repository;
 using WebProject.DataAccess.Repository.IRepository;
+using DotNetEnv;
+using System.Configuration;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 var Configuration = builder.Configuration;
+
+Env.Load();
+var clientID = Configuration["Authentication:Google:ClientId"];
+var clientSecret = Configuration["Authentication:Google:ClientSecret"];
+
 
 builder.Services.AddAuthentication(options =>
 {
@@ -19,8 +28,8 @@ builder.Services.AddAuthentication(options =>
 }).AddCookie()
   .AddGoogle(GoogleDefaults.AuthenticationScheme, options =>
 {
-    options.ClientId = Configuration["Authentication:Google:ClientId"];
-    options.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+    options.ClientId = clientID;
+    options.ClientSecret = clientSecret;
     options.CallbackPath = "/signin-google";
     options.ClaimActions.MapJsonKey("urn:google:picture", "picture", "url");
 });

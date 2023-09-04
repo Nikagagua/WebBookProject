@@ -13,8 +13,8 @@ using Microsoft.AspNetCore.WebUtilities;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
-using WebBookProject.Utility;
 using WebProject.Models;
+using WebProject.Utility;
 
 namespace WebBookProject.Areas.Identity.Pages.Account
 {
@@ -115,10 +115,10 @@ namespace WebBookProject.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+            if (!_roleManager.RoleExistsAsync(Sd.RoleCustomer).GetAwaiter().GetResult())
             {
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Sd.RoleAdmin)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(Sd.RoleCustomer)).GetAwaiter().GetResult();
             }
 
             Input = new()
@@ -164,7 +164,7 @@ namespace WebBookProject.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
+                        await _userManager.AddToRoleAsync(user, Sd.RoleCustomer);
                     }
 
                     var userId = await _userManager.GetUserIdAsync(user);

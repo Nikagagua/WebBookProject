@@ -1,8 +1,8 @@
-namespace WebBookProject.Utility
+namespace WebProject.Utility
 {
-    public static class SD
+    public static class Sd
     {
-        public const string Role_Admin = "Admin";
-        public const string Role_Customer = "Customer";
+        public const string RoleAdmin = "Admin";
+        public const string RoleCustomer = "Customer";
     }
 }

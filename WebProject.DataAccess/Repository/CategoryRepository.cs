@@ -6,7 +6,7 @@ namespace WebProject.DataAccess.Repository
 {
     public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private WebProjectDbContext _db;
+        private readonly WebProjectDbContext _db;
 
         public CategoryRepository(WebProjectDbContext db) : base(db)
         {
@@ -15,7 +15,7 @@ namespace WebProject.DataAccess.Repository
 
         public void Update(Category obj)
         {
-            _db.Categories.Update(obj);
+            _db.Categories?.Update(obj);
         }
     }
 }

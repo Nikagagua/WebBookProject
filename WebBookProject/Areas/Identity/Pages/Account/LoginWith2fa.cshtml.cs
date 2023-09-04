@@ -9,16 +9,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebBookProject.Areas.Identity.Pages.Account
 {
-    public class LoginWith2faModel : PageModel
+    public class LoginWith2FaModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly ILogger<LoginWith2faModel> _logger;
+        private readonly ILogger<LoginWith2FaModel> _logger;
 
-        public LoginWith2faModel(
+        public LoginWith2FaModel(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager,
-            ILogger<LoginWith2faModel> logger)
+            ILogger<LoginWith2FaModel> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;

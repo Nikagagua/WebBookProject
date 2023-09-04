@@ -8,22 +8,22 @@ namespace WebProject.DataAccess.Repository
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly WebProjectDbContext _db;
-        internal DbSet<T> dbSet;
+        internal DbSet<T> DbSet;
 
         public Repository(WebProjectDbContext db)
         {
             _db = db;
-            this.dbSet = _db.Set<T>();
+            this.DbSet = _db.Set<T>();
         }
 
         public void Add(T entity)
         {
-            dbSet.Add(entity);
+            DbSet.Add(entity);
         }
 
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = DbSet;
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties
@@ -38,7 +38,7 @@ namespace WebProject.DataAccess.Repository
 
         public IEnumerable<T> GetAll(string? includeProperties = null)
         {
-            IQueryable<T> query = dbSet;
+            IQueryable<T> query = DbSet;
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeProp in includeProperties
@@ -52,12 +52,12 @@ namespace WebProject.DataAccess.Repository
 
         public void Remove(T entity)
         {
-            dbSet.Remove(entity);
+            DbSet.Remove(entity);
         }
 
         public void RemoveRange(IEnumerable<T> entity)
         {
-            dbSet.RemoveRange(entity);
+            DbSet.RemoveRange(entity);
         }
     }
 }

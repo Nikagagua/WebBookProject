@@ -1,3 +1,4 @@
+@using WebProject.Utility
 <div class="container-fluid">
     <a class="navbar-brand text-uppercase" asp-area="User" asp-controller="Home" asp-action="Index">Books</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -9,7 +10,7 @@
             <li class="nav-item">
                 <a class="nav-link text-uppercase" asp-area="User" asp-controller="Home" asp-action="AboutMe">About me</a>
             </li>
-            @if (User.IsInRole(SD.Role_Admin))
+            @if (User.IsInRole(Sd.RoleAdmin))
             {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">

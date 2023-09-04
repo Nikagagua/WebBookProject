@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using WebBookProject.Utility;
 using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models.Models;
 using WebProject.Models.ViewModels;
+using WebProject.Utility;
 
 namespace WebBookProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = Sd.RoleAdmin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -30,7 +30,7 @@ namespace WebBookProject.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            ProductVM productVM = new()
+            ProductVm productVm = new()
             {
                 CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
                 {
@@ -42,18 +42,18 @@ namespace WebBookProject.Areas.Admin.Controllers
             if (id == null || id == 0)
             {
                 //create
-                return View(productVM);
+                return View(productVm);
             }
             else
             {
                 //update
-                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id);
-                return View(productVM);
+                productVm.Product = _unitOfWork.Product.Get(u => u.Id == id);
+                return View(productVm);
             }
         }
 
         [HttpPost]
-        public IActionResult Upsert(ProductVM productVM, IFormFile? file)
+        public IActionResult Upsert(ProductVm productVm, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -63,11 +63,11 @@ namespace WebBookProject.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = Path.Combine(wwwRootPath, @"images\product");
 
-                    if (!string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    if (!string.IsNullOrEmpty(productVm.Product.ImageUrl))
                     {
                         //delete the old image
                         var oldImagePath =
-                            Path.Combine(wwwRootPath, productVM.Product.ImageUrl.TrimStart('\\'));
+                            Path.Combine(wwwRootPath, productVm.Product.ImageUrl.TrimStart('\\'));
 
                         if (System.IO.File.Exists(oldImagePath))
                         {
@@ -80,17 +80,17 @@ namespace WebBookProject.Areas.Admin.Controllers
                         file.CopyTo(fileStream);
                     }
 
-                    productVM.Product.ImageUrl = @"\images\product\" + fileName;
+                    productVm.Product.ImageUrl = @"\images\product\" + fileName;
                 }
 
-                if (productVM.Product.Id == 0)
+                if (productVm.Product.Id == 0)
                 {
-                    _unitOfWork.Product.Add(productVM.Product);
+                    _unitOfWork.Product.Add(productVm.Product);
                     TempData["success"] = "Product created successfully";
                 }
                 else
                 {
-                    _unitOfWork.Product.Update(productVM.Product);
+                    _unitOfWork.Product.Update(productVm.Product);
                     TempData["success"] = "Product updated successfully";
                 }
 
@@ -99,12 +99,12 @@ namespace WebBookProject.Areas.Admin.Controllers
             }
             else
             {
-                productVM.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                productVm.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
                     Value = u.Id.ToString()
                 });
-                return View(productVM);
+                return View(productVm);
             }
         }
 

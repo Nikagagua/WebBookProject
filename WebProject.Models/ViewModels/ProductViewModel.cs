@@ -4,7 +4,7 @@ using WebProject.Models.Models;
 
 namespace WebProject.Models.ViewModels
 {
-    public class ProductVM
+    public class ProductVm
     {
         public Product? Product { get; set; }
 

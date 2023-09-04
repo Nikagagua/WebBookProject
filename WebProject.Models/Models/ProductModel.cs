@@ -15,7 +15,7 @@ namespace WebProject.Models.Models
         public string? Description { get; set; }
 
         [Required]
-        public string? ISBN { get; set; }
+        public string? Isbn { get; set; }
 
         [Required]
         public string? Author { get; set; }

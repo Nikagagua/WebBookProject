@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WebBookProject.Utility;
 using WebProject.DataAccess.Repository.IRepository;
 using WebProject.Models.Models;
+using WebProject.Utility;
 
 namespace WebBookProject.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Role_Admin)]
+    [Authorize(Roles = Sd.RoleAdmin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -138,9 +138,9 @@ namespace WebBookProject.Areas.Admin.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
-        public IActionResult DeletePOST(int? Id)
+        public IActionResult DeletePost(int? id)
         {
-            Category? category = _unitOfWork.Category.Get(c => c.Id == Id);
+            Category? category = _unitOfWork.Category.Get(c => c.Id == id);
             if (category == null)
             {
                 return NotFound();
